@@ -14,4 +14,7 @@ int main()
 void clear_screen()
 {
 	
+int plot_line()
+{
+	return 0;
 }
