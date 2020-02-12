@@ -8,3 +8,8 @@ int main()
 
 	return 0;
 }
+
+int plot_line()
+{
+	return 0;
+}
