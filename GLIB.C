@@ -57,6 +57,47 @@ void send_block(int speed)
 	Cnecin();
 }
 
+void move_right(int x, int y)
+{
+	/*The x value controls where the block starts, and the y value cotrols
+	  the height at which the block travels.*/
+
+	while (!Cconis())
+	{
+		draw_block(x, y);
+		Vsync();
+		draw_block(x, y);
+
+		x++;
+
+		if (x == 640)
+			x = 0;
+	}
+}
+
+void move_down(int x, int y, int stopping_point)
+{
+	while (!Cconis())
+	{
+		draw_block(x, y);
+		Vsync();
+		draw_block(x, y);
+
+		y++;
+
+		if (y == stopping_point)
+			break;
+	}
+}
+
+void draw_block(int x, int y)
+{
+	plot_line(x, y, x, y + 25, SOLID, XOR); /* Left Side */
+	plot_line(x, y, x + 150, y, SOLID, XOR); /* Top Side */
+	plot_line(x + 150, y, x + 150, y + 25, SOLID, XOR); /* Right Side */
+	plot_line(x, y + 25, x + 150, y + 25, SOLID, XOR); /* Bottom Side */
+}
+
 void fill_screen(long *base, char pattern)
 {
 	register int i = 0;
