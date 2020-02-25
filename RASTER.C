@@ -6,6 +6,7 @@
 #define HEIGHT 25
 #define XOR 2
 #define SOLID 0xFFFF
+#define BITS_IN_BYTE 8
 
 /*void plot_something_1(UINT16 *base, int x, int y, ...) */
 /*{ */
@@ -47,4 +48,33 @@ void disable_cursor()
 {
 	printf("\033f");
 	fflush(stdout);
+}
+
+void plot_hline (UINT16 *base, int y, int x1, int x2)
+{
+UINT16 p1, p2;
+int row1, row2, i;
+int shift_F, shift_B;
+row1 = x1 / BITS_IN_BYTE;
+row2 = x2 / BITS_IN_BYTE;
+shift_F = x1 >> 3;
+shift_B = (BITS_IN_BYTE - 1) - (x2 % (BITS_IN_BYTE - 1));
+if (row1 == row2)
+{
+p1 = SOLID >> shift_F;
+p1 = SOLID << shift_B;
+*(base + y * 80 + row1) = p1;
+}
+else
+{
+p1 = SOLID >> shift_F;
+p2 = SOLID << shift_B;
+*(base + y * 80 + row1) = p1;
+for (i = row1 + 1; i < row2; i++)
+{
+*(base + y * 80 + i) = SOLID;
+}
+*(base + y * 80 + row2) = p2;
+}
+return;
 }
