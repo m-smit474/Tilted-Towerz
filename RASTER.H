@@ -14,5 +14,6 @@ void plot_line(unsigned short x1, unsigned short y1,
 				short style, short mode);
 void clear_screen();
 void disable_cursor();
+void plot_hline (UINT16 *base, int y, int x1, int x2);
 
 #endif
