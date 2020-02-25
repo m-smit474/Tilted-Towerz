@@ -8,7 +8,7 @@ int main()
 	plot_something_1(base, 100, 100);
 	plot_something_2(base, 200, 200);*/
 
-	draw_block(50, 50);
+	draw_block(50, 50, 150);
 
 	return 0;
 }
