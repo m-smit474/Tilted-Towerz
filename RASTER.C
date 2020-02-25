@@ -7,10 +7,10 @@
 #define XOR 2
 #define SOLID 0xFFFF
 
-void plot_something_1(UINT16 *base, int x, int y, ...)
-{
+/*void plot_something_1(UINT16 *base, int x, int y, ...) */
+/*{ */
 	/* [TO DO] delete this example function */
-}
+/*} */
 
 void draw_block(int x, int y, int length)
 {
@@ -34,4 +34,17 @@ void plot_line(unsigned short x1, unsigned short y1,
 	WMODE = mode;
 	LSTLIN = 0;
 	linea3();
+}
+
+void clear_screen()
+{
+	disable_cursor();					/* hide cursor */
+	printf("\033E\033f\n");				/* Blank Screen */
+	linea0();
+}
+
+void disable_cursor()
+{
+	printf("\033f");
+	fflush(stdout);
 }
