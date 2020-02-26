@@ -14,9 +14,8 @@ int main()
 	
 	fill_screen(base, 0);
 
-	plot_hline(base, 50, 50, 150);
+	draw_block(base, 50, 50, 100);
 	
-	plot_vline(base, 50, 50, 150);
 	
 
 	return 0;

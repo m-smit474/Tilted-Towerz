@@ -16,14 +16,14 @@
 	/* [TO DO] delete this example function */
 /*} */
 
-void draw_block(int x, int y, int length)
+void draw_block(UINT16 *base, int x, int y, int length)
 {
 	length = 150;
 	
-	plot_line(x, y, x, y + HEIGHT, SOLID, XOR); /* Left Side */
-	plot_line(x, y, x + HEIGHT, y, SOLID, XOR); /* Top Side */
-	plot_line(x + length, y, x + length, y + HEIGHT, SOLID, XOR); /* Right Side */
-	plot_line(x, y + HEIGHT, x + length, y + HEIGHT, SOLID, XOR); /* Bottom Side */
+	plot_vline(base, x, y, y + HEIGHT); 		 /* Left Side */
+	plot_vline(base, x + length, y, y + HEIGHT); /* Right Side */
+	plot_hline(base, y, x, x + length); 		 /* Top Side */
+	plot_hline(base, y + HEIGHT, x, x + length); /* Bottom Side */
 }
 
 void disable_cursor()
