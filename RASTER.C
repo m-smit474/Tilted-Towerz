@@ -26,27 +26,6 @@ void draw_block(int x, int y, int length)
 	plot_line(x, y + HEIGHT, x + length, y + HEIGHT, SOLID, XOR); /* Bottom Side */
 }
 
-void plot_line(unsigned short x1, unsigned short y1,
-				unsigned short x2, unsigned short y2,
-				short style, short mode)
-{
-	X1 = x1;
-	Y1 = y1;
-	X2 = x2;
-	Y2 = y2;
-	LNMASK = style;
-	WMODE = mode;
-	LSTLIN = 0;
-	linea3();
-}
-
-void clear_screen()
-{
-	disable_cursor();					/* hide cursor */
-	printf("\033E\033f\n");				/* Blank Screen */
-	linea0();
-}
-
 void disable_cursor()
 {
 	printf("\033f");
