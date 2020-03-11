@@ -6,7 +6,8 @@
 struct Block
 {
 	unsigned int x, y;
-	int delta_x, delta y;
+	int speed;
+	int length;
 };
 
 struct Base
