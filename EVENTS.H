@@ -3,3 +3,5 @@
 
 
 bool check_collision(int y, int current_lvl);
+
+#endif
