@@ -1,3 +1,4 @@
+#include "events.h"
 #include "model.h"
 #include "raster.h"
 

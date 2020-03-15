@@ -1,5 +1,6 @@
-include "model.h"
-include "raster.h"
+#include "renderer.h"
+#include "model.h"
+#include "raster.h"
 
 void render(const struct Model *model, UINT16 *base)
 {
