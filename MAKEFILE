@@ -1,8 +1,8 @@
-tiltedTowerz: tiltedTowerz.o model.o event.o raster.o rast_asm.o renderer.o
-	cc68x -g tiltedTowerz.o model.o event.o raster.o rast_asm.o renderer.o -o tiltedTowerz
+tilted: tilted.o model.o events.o raster.o rast_asm.o renderer.o
+	cc68x -g tilted.o model.o events.o raster.o rast_asm.o renderer.o -o tilted
 	
-tiltedTowerz.o: tiltedTowerz.c tiltedTowerz.h
-	cc68x -g -c tiltedTowerz.c
+tilted.o: tilted.c
+	cc68x -g -c tilted.c
 	
 renderer.o: renderer.c renderer.h
 	cc68x -g -c renderer.c
@@ -10,8 +10,8 @@ renderer.o: renderer.c renderer.h
 model.o: model.c model.h
 	cc68x -g -c model.c
 	
-event.o: event.c event.h
-	cc68x -g -c event.c
+events.o: events.c events.h
+	cc68x -g -c events.c
 
 tst_rast.o: tst_rast.c raster.h
 	cc68x -g -c tst_rast.c
