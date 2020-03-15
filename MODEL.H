@@ -5,14 +5,15 @@
 
 struct Block
 {
-	unsigned int x, y;
+	int x, y;
 	int speed;
 	int length;
 };
 
-struct Base
+struct Model
 {
-	unsigned int x, y;
+	Block* blocks[20];
+	int fillLevel;
 };
 
 void move_block_h(struct Block* block);
