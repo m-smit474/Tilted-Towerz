@@ -1,8 +1,11 @@
 #include "events.h"
 #include "renderer.h"
+#include "model.h"
 #include <stdio.h>
 #include <linea.h>
 #include <osbind.h>
+
+#include "types.h"
 
 int main() 
 {
@@ -16,4 +19,5 @@ int main()
 
 	render_block(block, base);
 
+	return 0;
 }
