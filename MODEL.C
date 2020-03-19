@@ -12,7 +12,7 @@ void move_block_h(struct Block *block)
 
 void move_block_v(struct Block* block)
 {
-	block->y += block->DROP_SPEED;
+	block->y += DROP_SPEED;
 }
 
 void update_size(struct Block* block, int previousLeft)
