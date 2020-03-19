@@ -3,13 +3,6 @@
 #include <linea.h>
 #include <osbind.h>
 
-#define HEIGHT 25
-#define XOR 2
-#define SOLID 0xFFFF
-#define BITS_IN_BYTE 8
-#define BYTES_PER_SCREEN 32000
-#define BLACK -1
-#define WHITE 0
 
 /*void plot_something_1(UINT16 *base, int x, int y, ...) */
 /*{ */

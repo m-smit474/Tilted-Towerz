@@ -1,6 +1,14 @@
 #ifndef RASTER_H
 #define RASTER_H
 
+#define HEIGHT 25
+#define XOR 2
+#define SOLID 0xFFFF
+#define BITS_IN_BYTE 8
+#define BYTES_PER_SCREEN 32000
+#define BLACK -1
+#define WHITE 0
+
 #include "types.h"
 
 /* [TO DO] the functions below are examples. Replace them! */
