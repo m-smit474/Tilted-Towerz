@@ -12,7 +12,7 @@ struct Block
 
 struct Model
 {
-	Block* blocks[20];
+	struct Block* blocks[20];
 	int fillLevel;
 };
 

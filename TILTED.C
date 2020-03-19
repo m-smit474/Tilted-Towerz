@@ -9,15 +9,18 @@
 
 int main() 
 {
-	Block block;
-	UINT16 *base = physbase();
+	struct Block block;
+	struct Block *blockPtr = NULL;
+	UINT16 *base = Physbase();
 
-	block->x = 50;
-	block->y = 50;
-	block->speed = 0;
-	block->length = 50;
+	block.x = 50;
+	block.y = 50;
+	block.speed = 0;
+	block.length = 50;
+	
+	blockPtr = &block;
 
-	render_block(block, base);
+	render_block(blockPtr, base);
 
 	return 0;
 }
