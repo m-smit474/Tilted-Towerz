@@ -1,6 +1,7 @@
 #include "model.h"
 #include "raster.h"
 #include "events.h"
+#include "stdlib.h"
 #include <stdio.h>
 
 #define DROP_SPEED 5
