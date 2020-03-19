@@ -15,7 +15,7 @@ void render(const struct Model *model, UINT16 *base)
 	
 }
 
-void render_block(const struct *Block block, UINT16 *base)
+void render_block(const struct Block *block, UINT16 *base)
 {
 	draw_block(base, block->x, block->y, block->length);
 }
