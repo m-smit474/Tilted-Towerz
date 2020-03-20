@@ -10,17 +10,14 @@
 int main() 
 {
 	struct Block block;
-	struct Block *blockPtr = NULL;
 	UINT16 *base = Physbase();
 
 	block.x = 50;
 	block.y = 50;
 	block.speed = 0;
 	block.length = 50;
-	
-	blockPtr = &block;
 
-	render_block(blockPtr, base);
+	render_block(&block, base);
 
 	return 0;
 }

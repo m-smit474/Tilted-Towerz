@@ -1,6 +1,7 @@
 #include "renderer.h"
 #include "model.h"
 #include "raster.h"
+#include "types.h"
 
 void render(const struct Model *model, UINT16 *base)
 {
@@ -8,7 +9,7 @@ void render(const struct Model *model, UINT16 *base)
 	
 	while(currentBlock < model->fillLevel)
 	{
-		render_block(model->blocks[currentBlock]);
+		render_block(model->blocks[currentBlock], base);
 		
 		currentBlock++;
 	}
