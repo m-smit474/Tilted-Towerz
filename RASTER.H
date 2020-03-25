@@ -1,7 +1,7 @@
 #ifndef RASTER_H
 #define RASTER_H
 
-#define HEIGHT 25
+#define HEIGHT 15
 #define XOR 2
 #define SOLID 0xFFFF
 #define BITS_IN_BYTE 8

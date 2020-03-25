@@ -11,8 +11,6 @@
 
 void draw_block(UINT16 *base, int x, int y, int length)
 {
-	length = 150;
-	
 	plot_vline(base, x, y, y + HEIGHT); 		 /* Left Side */
 	plot_vline(base, x + length, y, y + HEIGHT); /* Right Side */
 	plot_hline(base, y, x, x + length); 		 /* Top Side */
