@@ -8,26 +8,56 @@
 #include "model.h"
 #include "raster.h"
 
+#define MAX_LENGTH 100
+
+void makeBlock(int x, int y, int speed, int length, struct Block *block);
+void addBlock(struct Model *model, struct Block *block);
 
 int main() 
 {
 	
-	struct Block block;
+	struct Block foundation;
+	struct Block block2;
 	struct Model model;
 	UINT16 *base = Physbase();
-
-	block.x = 50;
-	block.y = 50;
-	block.speed = 0;
-	block.length = 100;
+	
+	makeBlock(100,176,0, MAX_LENGTH, &foundation);
+	makeBlock(0,0,5, MAX_LENGTH, &block2);
+	
+	/* Add blocks to model */
 	
 	model.fillLevel = 0;
 	
-	model.blocks[model.fillLevel] = &block;
-	model.fillLevel++;
+	addBlock(&model, &foundation);
+	addBlock(&model, &block2);
+
+	
+	/* Draw */
 	
 	fill_screen(base, WHITE);
 	render(&model, base);
+	
+	while(!Cconis())
+	{
+		move_block_h(model.blocks[1]);
+		Vsync();
+		fill_screen(base,WHITE);
+		render(&model, base);
+	}
 
 	return 0;
+}
+
+void makeBlock(int x, int y, int speed, int length, struct Block *block)
+{
+	block->x = x;
+	block->y = y;
+	block->speed = speed;
+	block->length = length;
+}
+
+void addBlock(struct Model* model, struct Block *block)
+{
+	model->blocks[model->fillLevel] = block;
+	model->fillLevel++;
 }

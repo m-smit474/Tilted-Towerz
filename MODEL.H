@@ -16,6 +16,7 @@ struct Model
 	int fillLevel;
 };
 
+void update_size(struct Block* block, int previousLeft);
 void move_block_h(struct Block* block);
 void move_block_v(struct Block* block);
 
