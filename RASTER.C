@@ -32,6 +32,21 @@ void fill_screen(UINT16 *base, char pattern)
 		*(location++) = pattern;
 }
 
+void clear_block(UINT16 *base, int y)
+{
+	/* 80 bytes in a line */
+	/* 15 is height of block */
+	int start = y * 80;
+	int end = start + (80 * 16);
+	register int i = start;
+	register UINT16 *loc = base;
+	
+	loc = loc + start;
+
+	while (i++ < end)
+		*(loc++) = WHITE;
+}
+
 void plot_hline (UINT16 *base, int y, int x1, int x2)
 {
 	UINT16 p1, p2;

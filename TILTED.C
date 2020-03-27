@@ -22,7 +22,7 @@ int main()
 	UINT16 *base = Physbase();
 	
 	makeBlock(100,176,0, MAX_LENGTH, &foundation);
-	makeBlock(0,0,5, MAX_LENGTH, &block2);
+	makeBlock(0,0,1, MAX_LENGTH, &block2);
 	
 	/* Add blocks to model */
 	
@@ -40,9 +40,9 @@ int main()
 	while(!Cconis())
 	{
 		move_block_h(model.blocks[1]);
-		Vsync();
-		fill_screen(base,WHITE);
+		clear_block(base, model.blocks[1]->y);
 		render(&model, base);
+		Vsync();
 	}
 
 	return 0;
