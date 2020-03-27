@@ -3,14 +3,8 @@
 #include <linea.h>
 #include <osbind.h>
 
-
-/*void plot_something_1(UINT16 *base, int x, int y, ...) */
-/*{ */
-	/* [TO DO] delete this example function */
-/*} */
-
 void draw_block(UINT16 *base, int x, int y, int length)
-{
+{	
 	plot_vline(base, x, y, y + HEIGHT); 		 /* Left Side */
 	plot_vline(base, x + length, y, y + HEIGHT); /* Right Side */
 	plot_hline(base, y, x, x + length); 		 /* Top Side */
@@ -64,30 +58,23 @@ void plot_hline (UINT16 *base, int y, int x1, int x2)
 	return;
 }
 
-void plot_vline (UINT16 *base, int x, int y1, int y2)
+void plot_vline(UINT16 *base, int x, int y1, int y2)
 {
 	int temp;
-	UINT16 pattern;
-	UINT16 *screen_byte;
-	
+
 	if (x >= 0 && x < 640)
 	{
 		if (y1 > y2)
 		{
-		temp = y1;
-		y1 = y2;
-		y2 = temp;
+			temp = y1;
+			y1 = y2;
+			y2 = temp;
 		}
 		if (y1 < 0) y1 = 0;
 		if (y2 > 399) y2 = 399;
-		
-		pattern = 1 << (7 - (x & 7));
-		screen_byte = base + y1 * 80 + (x >> 3);
-		for ( ; y1 <= y2; y1++)
-		{
-		*screen_byte = pattern;
-		screen_byte = screen_byte + 80;
-		}
+
+		for (; y1 <= y2; y1++)
+			plot_pixel(base, x, y1);
 	}
 	return;
 }
