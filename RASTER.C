@@ -56,7 +56,7 @@ void plot_hline (UINT16 *base, int y, int x1, int x2)
 	if (row1 == row2)
 	{
 		p1 = SOLID >> shift_F;
-		p1 = SOLID << shift_B;
+		p2 = SOLID << shift_B;
 		*(place + row1) = p1 & p2;
 	}
 	else
