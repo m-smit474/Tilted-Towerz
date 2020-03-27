@@ -30,8 +30,8 @@ void clear_block(UINT16 *base, int y)
 {
 	/* 80 bytes in a line */
 	/* 15 is height of block */
-	int start = y * 80;
-	int end = start + (80 * 16);
+	int start = y * 40;
+	int end = start + (40 * 16);
 	register int i = start;
 	register UINT16 *loc = base;
 	
@@ -46,36 +46,38 @@ void plot_hline (UINT16 *base, int y, int x1, int x2)
 	UINT16 p1, p2;
 	int row1, row2, i;
 	int shift_F, shift_B;
+	UINT16* place = base + y * 40;
 	
-	row1 = x1 / BITS_IN_BYTE;
-	row2 = x2 / BITS_IN_BYTE;
-	shift_F = x1 >> 3;
-	shift_B = (BITS_IN_BYTE - 1) - (x2 % (BITS_IN_BYTE - 1));
+	row1 = x1 / 15;
+	row2 = x2 / 15;
+	shift_F = x1 % 15;
+	shift_B = (15 - 1) - (x2 % 15);
 	
 	if (row1 == row2)
 	{
 		p1 = SOLID >> shift_F;
 		p1 = SOLID << shift_B;
-		*(base + y * 80 + row1) = p1;
+		*(place + row1) = p1 & p2;
 	}
 	else
 	{
 		p1 = SOLID >> shift_F;
 		p2 = SOLID << shift_B;
-		*(base + y * 80 + row1) = p1;
+		*(place + row1) = p1;
 		for (i = row1 + 1; i < row2; i++)
 		{
-			*(base + y * 80 + i) = SOLID;
+			*(place + i) = SOLID;
 		}
-		*(base + y * 80 + row2) = p2;
-	}
-	
+		*(place + row2) = p2;
+	}	
 	return;
 }
 
 void plot_vline(UINT16 *base, int x, int y1, int y2)
 {
 	int temp;
+	UINT16 pattern;
+	UINT16* screen_byte;
 
 	if (x >= 0 && x < 640)
 	{
@@ -88,8 +90,15 @@ void plot_vline(UINT16 *base, int x, int y1, int y2)
 		if (y1 < 0) y1 = 0;
 		if (y2 > 399) y2 = 399;
 
+		pattern = 1 << (15 - (x & 15));
+		screen_byte = base + y1 * 40 + (x >> 4);
 		for (; y1 <= y2; y1++)
-			plot_pixel(base, x, y1);
+		{
+			*screen_byte = pattern;
+			screen_byte = screen_byte + 40;
+		}
 	}
 	return;
 }
+
+

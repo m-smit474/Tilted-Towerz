@@ -8,7 +8,7 @@
 #include "model.h"
 #include "raster.h"
 
-#define MAX_LENGTH 100
+#define MAX_LENGTH 200
 
 void makeBlock(int x, int y, int speed, int length, struct Block *block);
 void addBlock(struct Model *model, struct Block *block);
@@ -21,7 +21,7 @@ int main()
 	struct Model model;
 	UINT16 *base = Physbase();
 	
-	makeBlock(100,176,0, MAX_LENGTH, &foundation);
+	makeBlock(220,384,0, MAX_LENGTH, &foundation);
 	makeBlock(0,0,1, MAX_LENGTH, &block2);
 	
 	/* Add blocks to model */
