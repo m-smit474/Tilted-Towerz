@@ -48,10 +48,10 @@ void plot_hline (UINT16 *base, int y, int x1, int x2)
 	int shift_F, shift_B;
 	UINT16* place = base + y * 40;
 	
-	row1 = x1 / 15;
-	row2 = x2 / 15;
-	shift_F = x1 % 15;
-	shift_B = (15 - 1) - (x2 % 15);
+	row1 = x1 / 16;
+	row2 = x2 / 16;
+	shift_F = x1 % 16;
+	shift_B = (16 - 1) - (x2 % 16);
 	
 	if (row1 == row2)
 	{
