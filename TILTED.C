@@ -21,10 +21,12 @@ int main()
 	struct Model model;
 	UINT16 *base = Physbase();
 	
+	/* Instatiate foundation and blocks to starting position */
+	
 	makeBlock(220,384,0, MAX_LENGTH, &foundation);
 	makeBlock(0,0,1, MAX_LENGTH, &block2);
 	
-	/* Add blocks to model */
+	/* Add foundation to model */
 	
 	model.fillLevel = 0;
 	
@@ -32,18 +34,32 @@ int main()
 	addBlock(&model, &block2);
 
 	
-	/* Draw */
+	/* Draw starting scene */
 	
 	fill_screen(base, WHITE);
 	render(&model, base);
 	
+	/* Enter main game loop */
+	/* Moves one block at a time */
+	
 	while(!Cconis())
 	{
+		/* Add current block to model */
+		
+		/* Enter loop */
+		/* Move block horizontally until key pressed */
+		
 		move_block_h(model.blocks[1]);
 		clear_block(base, model.blocks[1]->y);
 		render(&model, base);
 		Vsync();
+		
+		/* Enter loop */
+		/* Drop block until previous blocks y position (collision) */
+		
 	}
+	
+	/* Blocks have stacked to top of screen or length of block is 0 */
 
 	return 0;
 }
