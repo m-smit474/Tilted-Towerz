@@ -15,24 +15,29 @@ void addBlock(struct Model *model, struct Block *block);
 
 int main() 
 {
-	
+	struct Block blocks[20];
 	struct Block foundation;
 	struct Block block2;
 	struct Model model;
 	UINT16 *base = Physbase();
+	int currentBlock = 0;
+	int currentSpeed = 1;
+	int previousLevel;
+	bool done = false;
 	
-	/* Instatiate foundation and blocks to starting position */
+	/* Instatiate foundation */
 	
-	makeBlock(220,384,0, MAX_LENGTH, &foundation);
-	makeBlock(0,0,1, MAX_LENGTH, &block2);
+	makeBlock(220,384,0, MAX_LENGTH, &blocks[currentBlock]);
 	
 	/* Add foundation to model */
 	
 	model.fillLevel = 0;
 	
-	addBlock(&model, &foundation);
-	addBlock(&model, &block2);
+	addBlock(&model, &blocks[currentBlock]);
+	
 
+	currentBlock++;
+	
 	
 	/* Draw starting scene */
 	
@@ -42,21 +47,41 @@ int main()
 	/* Enter main game loop */
 	/* Moves one block at a time */
 	
-	while(!Cconis())
+	while(!done)
 	{
 		/* Add current block to model */
+		makeBlock(0,0,currentSpeed, blocks[currentBlock-1].length, &blocks[currentBlock]);
+		addBlock(&model, &blocks[currentBlock]);
 		
 		/* Enter loop */
 		/* Move block horizontally until key pressed */
+		while(!Cconis())
+		{
+			move_block_h(model.blocks[currentBlock]);
+			clear_block(base, model.blocks[currentBlock]->y);
+			render(&model, base);
+			Vsync();
+			
+			/* change direction when it hits walls */
+			if(model.blocks[currentBlock]->x <= 0 || model.blocks[currentBlock]->x + model.blocks[currentBlock]->length >= 640)
+			{
+				model.blocks[currentBlock]->speed *= -1;
+			}
+		}
 		
-		move_block_h(model.blocks[1]);
-		clear_block(base, model.blocks[1]->y);
-		render(&model, base);
-		Vsync();
-		
+		previousLevel = model.blocks[currentBlock-1]->y;
 		/* Enter loop */
 		/* Drop block until previous blocks y position (collision) */
+		while(!check_collision(model.blocks[currentBlock]->y, previousLevel))
+		{
+			move_block_v(model.blocks[currentBlock]);
+			clear_block(base, model.blocks[currentBlock]->y);
+			render(&model, base);
+			Vsync();
+		}
 		
+		done = true; /* run once */
+		currentBlock++;
 	}
 	
 	/* Blocks have stacked to top of screen or length of block is 0 */

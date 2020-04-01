@@ -4,7 +4,7 @@
 #include "stdlib.h"
 #include <stdio.h>
 
-#define DROP_SPEED 5
+#define DROP_SPEED 1
 
 void move_block_h(struct Block *block)
 {
