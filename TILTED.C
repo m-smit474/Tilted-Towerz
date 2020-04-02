@@ -27,7 +27,7 @@ int main()
 	
 	/* Instatiate foundation */
 	
-	makeBlock(220,384,0, MAX_LENGTH, &blocks[currentBlock]);
+	makeBlock(220,350,0, MAX_LENGTH, &blocks[currentBlock]);
 	
 	/* Add foundation to model */
 	
@@ -79,6 +79,13 @@ int main()
 			render(&model, base);
 			Vsync();
 		}
+
+		/*update size of current block*/
+		update_size(model.blocks[currentBlock], model.blocks[currentBlock - 1]->x);
+
+		/*make a flash and sound to go with it here*/
+		fill_screen(base, WHITE);
+		render(&model, base);
 		
 		done = true; /* run once */
 		currentBlock++;
