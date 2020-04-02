@@ -80,6 +80,18 @@ int main()
 			Vsync();
 		}
 
+		if (model.blocks[currentBlock]->x > model.blocks[currentBlock - 1]->x + model.blocks[currentBlock - 1]->length)
+		{
+			done = true;
+			break;
+		}
+			
+		if (model.blocks[currentBlock - 1]->x > model.blocks[currentBlock]->x + model.blocks[currentBlock]->length)
+		{
+			done = true;
+			break;
+		}
+
 		/*update size of current block*/
 		update_size(model.blocks[currentBlock], model.blocks[currentBlock - 1]->x);
 
