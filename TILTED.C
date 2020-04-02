@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <linea.h>
 #include <osbind.h>
 
@@ -69,6 +70,9 @@ int main()
 			}
 		}
 		
+		/*This is to clear the buffer*/
+		Cnecin();
+
 		previousLevel = model.blocks[currentBlock-1]->y;
 		/* Enter loop */
 		/* Drop block until previous blocks y position (collision) */
@@ -99,7 +103,7 @@ int main()
 		fill_screen(base, WHITE);
 		render(&model, base);
 		
-		done = true; /* run once */
+		/*done = true; /* run once */
 		currentBlock++;
 	}
 	
