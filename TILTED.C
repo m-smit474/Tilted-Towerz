@@ -10,13 +10,15 @@
 #include "raster.h"
 
 #define MAX_LENGTH 200
+#define MAX_BLOCKS 20
+#define MAX_SPEED 10
 
 void makeBlock(int x, int y, int speed, int length, struct Block *block);
 void addBlock(struct Model *model, struct Block *block);
 
 int main() 
 {
-	struct Block blocks[20];
+	struct Block blocks[MAX_BLOCKS];
 	struct Block foundation;
 	struct Block block2;
 	struct Model model;
@@ -95,6 +97,12 @@ int main()
 			done = true;
 			break;
 		}
+		
+		if (currentBlock == MAX_BLOCKS)
+		{
+			done = true; 
+			break;
+		}
 
 		/*update size of current block*/
 		update_size(model.blocks[currentBlock], model.blocks[currentBlock - 1]->x);
@@ -103,8 +111,10 @@ int main()
 		fill_screen(base, WHITE);
 		render(&model, base);
 		
-		/*done = true; /* run once */
+		/* Increment */
 		currentBlock++;
+		if (currentSpeed < MAX_SPEED)
+			currentSpeed++;
 	}
 	
 	/* Blocks have stacked to top of screen or length of block is 0 */
