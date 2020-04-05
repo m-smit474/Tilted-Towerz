@@ -60,7 +60,7 @@ int main()
 		{
 			move_block_h(model.blocks[currentBlock]);
 			clear_block(base, model.blocks[currentBlock]->y);
-			render(&model, base);
+			render_block(model.blocks[currentBlock], base);
 			Vsync();
 			
 			/* change direction when it hits walls */
@@ -80,7 +80,7 @@ int main()
 		{
 			move_block_v(model.blocks[currentBlock]);
 			clear_block(base, model.blocks[currentBlock]->y);
-			render(&model, base);
+			render_block(model.blocks[currentBlock], base);
 			Vsync();
 		}
 
