@@ -30,7 +30,7 @@ void clear_block(UINT16 *base, int y)
 {
 	/* 80 bytes in a line */
 	/* 15 is height of block */
-	int start = (y - 1) * 40;
+	int start = (y-1) * 40;
 	int end = start + (40 * 16);
 	register int i = start;
 	register UINT16 *loc = base;

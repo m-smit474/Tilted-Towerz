@@ -15,6 +15,7 @@
 
 void makeBlock(int x, int y, int speed, int length, struct Block *block);
 void addBlock(struct Model *model, struct Block *block);
+void playSound();
 
 int main() 
 {
@@ -104,10 +105,13 @@ int main()
 			break;
 		}
 
+		/*Play collision sound*/
+		playSound();
+
 		/*update size of current block*/
 		update_size(model.blocks[currentBlock], model.blocks[currentBlock - 1]->x);
 
-		/*make a flash and sound to go with it here*/
+		/*make a flash*/
 		fill_screen(base, WHITE);
 		render(&model, base);
 		
@@ -120,6 +124,37 @@ int main()
 	/* Blocks have stacked to top of screen or length of block is 0 */
 
 	return 0;
+}
+
+void playSound()
+{
+	int count = 0;
+
+	volatile char* PSG_reg_select = 0xFF8800;
+	volatile char* PSG_reg_write = 0xFF8802;
+
+	long old_ssp = Super(0);
+
+	*PSG_reg_select = 0;		/* set channel A fine tune = 248 */
+	*PSG_reg_write = 100;
+
+	*PSG_reg_select = 1;		/* set channel A coarse tune = 0 */
+	*PSG_reg_write = 1;
+
+	*PSG_reg_select = 7;		/* enable channel A on mixer */
+	*PSG_reg_write = 0x3E;
+
+	*PSG_reg_select = 8;		/* set channel A volume = 11 */
+	*PSG_reg_write = 10;
+
+	while (count != 4000) {     /* tone now playing */
+		count++;
+	}
+
+	*PSG_reg_select = 8;		/* set channel A volume = 0 */
+	*PSG_reg_write = 0;
+
+	Super(old_ssp);
 }
 
 void makeBlock(int x, int y, int speed, int length, struct Block *block)
