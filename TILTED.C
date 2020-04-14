@@ -28,6 +28,7 @@ int main()
 	int currentSpeed = 1;
 	int previousLevel;
 	bool done = false;
+
 	
 	/* Instatiate foundation */
 	
@@ -45,6 +46,7 @@ int main()
 	
 	/* Draw starting scene */
 	
+	disable_cursor();
 	fill_screen(base, WHITE);
 	render(&model, base);
 	
